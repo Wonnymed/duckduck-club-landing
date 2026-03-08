@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DuckDuck Club</title>
+    <style>
+      :root {
+        --bg: #0a0a0a;
+        --surface: #111111;
+        --text: #f6f3ee;
+        --muted: #b5aea2;
+        --divider: #2a261e;
+        --gold: #d8b46a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Inter", "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background: radial-gradient(circle at top, #18150f 0%, var(--bg) 45%);
+        color: var(--text);
+      }
+
+      .hero {
+        padding: 8rem 1.5rem 5.25rem;
+        text-align: center;
+      }
+
+      .hero-inner {
+        width: min(54rem, 100%);
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        margin: 0;
+        font-size: clamp(2.2rem, 5.3vw, 4.4rem);
+        letter-spacing: -0.03em;
+        line-height: 1.03;
+      }
+
+      .hero p {
+        margin: 1.25rem auto 0;
+        max-width: 36rem;
+        color: var(--muted);
+        font-size: clamp(1rem, 2.3vw, 1.2rem);
+        line-height: 1.55;
+      }
+
+      .gold-line {
+        border-top: 1px solid var(--divider);
+        margin: 0 1.5rem;
+        padding: 2.15rem 0 2.4rem;
+      }
+
+      .gold-line p {
+        margin: 0 auto;
+        width: min(46rem, 100%);
+        text-align: center;
+        font-size: clamp(1.05rem, 2vw, 1.22rem);
+        line-height: 1.5;
+        letter-spacing: 0.01em;
+        color: #efe5cf;
+      }
+
+      .gold-line .emphasis {
+        color: var(--gold);
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>DuckDuck Club</h1>
+        <p>Clarity for what to do next, and the strategic edge to know where serious upside actually lives.</p>
+      </div>
+    </section>
+
+    <section class="gold-line" aria-label="Base and Premium difference">
+      <p>
+        Base gives you direction. <span class="emphasis">Premium puts you in the layer where execution and real opportunity happen.</span>
+      </p>
+    </section>
+  </body>
+</html>
