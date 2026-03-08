@@ -36,7 +36,13 @@
       </section>
     </main>
 
-    <div class="overlay hidden" id="customizerOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div
+      class="overlay hidden"
+      id="customizerOverlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
       <section class="modal">
         <button class="close-btn" id="closeModal" aria-label="Fechar">×</button>
         <h2 id="modalTitle">Personalize seu acesso</h2>
@@ -63,10 +69,20 @@
         <aside class="summary">
           <h3>Resumo do seu acesso</h3>
           <p><strong>Plano:</strong> <span id="summaryPlan"></span></p>
-          <p id="summaryIncludedRow" class="hidden"><strong>Inclui no plano:</strong> 2 idiomas</p>
-          <p><strong>Idiomas selecionados:</strong> <span id="summaryLanguages">Nenhum</span></p>
-          <p><strong>Extensões:</strong> <span id="summaryExtensions">Nenhuma</span></p>
-          <p class="total"><strong>Total mensal:</strong> <span id="summaryTotalUsd"></span></p>
+          <p id="summaryIncludedRow" class="hidden">
+            <strong>Inclui no plano:</strong> 2 idiomas
+          </p>
+          <p>
+            <strong>Idiomas selecionados:</strong>
+            <span id="summaryLanguages">Nenhum</span>
+          </p>
+          <p>
+            <strong>Extensões:</strong>
+            <span id="summaryExtensions">Nenhuma</span>
+          </p>
+          <p class="total">
+            <strong>Total mensal:</strong> <span id="summaryTotalUsd"></span>
+          </p>
           <p class="hint" id="summaryTotalBrl"></p>
           <button class="checkout">Continuar para checkout</button>
         </aside>
