@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DuckDuck Club</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <h1>DuckDuck Club</h1>
+        <p>Acesse inteligência de mercado com uma experiência premium.</p>
+      </section>
+
+      <section class="plans" aria-label="Planos disponíveis">
+        <article class="plan-card">
+          <h2>Base</h2>
+          <p class="plan-price">US$15/mês</p>
+          <ul>
+            <li>Acesso essencial ao clube</li>
+            <li>Idiomas sob demanda</li>
+          </ul>
+          <button class="cta" data-plan="base">Entrar no Base</button>
+        </article>
+
+        <article class="plan-card premium">
+          <h2>Premium</h2>
+          <p class="plan-price">US$29/mês</p>
+          <ul>
+            <li>Prioridade em conteúdos</li>
+            <li>2 idiomas inclusos</li>
+          </ul>
+          <button class="cta" data-plan="premium">Virar Premium</button>
+        </article>
+      </section>
+    </main>
+
+    <div class="overlay hidden" id="customizerOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <section class="modal">
+        <button class="close-btn" id="closeModal" aria-label="Fechar">×</button>
+        <h2 id="modalTitle">Personalize seu acesso</h2>
+        <p id="modalSubtitle"></p>
+
+        <div class="modal-block">
+          <div>
+            <h3>Polymarket Lab</h3>
+            <p>+US$10/mês · aprox. R$52/mês</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="polymarketToggle" />
+            <span>Ativar</span>
+          </label>
+        </div>
+
+        <div class="modal-block">
+          <h3 id="languagesTitle"></h3>
+          <p id="languagesSubtitle" class="hint"></p>
+          <div class="chip-grid" id="languageChips"></div>
+          <p id="premiumExtrasLabel" class="hint hidden"></p>
+        </div>
+
+        <aside class="summary">
+          <h3>Resumo do seu acesso</h3>
+          <p><strong>Plano:</strong> <span id="summaryPlan"></span></p>
+          <p id="summaryIncludedRow" class="hidden"><strong>Inclui no plano:</strong> 2 idiomas</p>
+          <p><strong>Idiomas selecionados:</strong> <span id="summaryLanguages">Nenhum</span></p>
+          <p><strong>Extensões:</strong> <span id="summaryExtensions">Nenhuma</span></p>
+          <p class="total"><strong>Total mensal:</strong> <span id="summaryTotalUsd"></span></p>
+          <p class="hint" id="summaryTotalBrl"></p>
+          <button class="checkout">Continuar para checkout</button>
+        </aside>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
