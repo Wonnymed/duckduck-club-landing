@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DuckDuck Club</title>
+    <style>
+      :root {
+        --bg: #0d1117;
+        --panel: #151b23;
+        --text: #e6edf3;
+        --muted: #9ca7b8;
+        --gold: #d4af37;
+        --accent: #7db8ff;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .container {
+        width: min(1080px, 92vw);
+        margin: 0 auto;
+      }
+
+      .hero {
+        padding: 4.5rem 0 2rem;
+      }
+
+      .hero h1 {
+        margin: 0 0 0.75rem;
+        font-size: clamp(2rem, 5vw, 3.4rem);
+      }
+
+      .hero p {
+        margin: 0;
+        max-width: 60ch;
+        color: var(--muted);
+      }
+
+      .gold-line {
+        height: 2px;
+        border: 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        margin: 2.25rem 0 3rem;
+      }
+
+      .how-it-works {
+        padding-bottom: 4.5rem;
+      }
+
+      .how-it-works h2 {
+        margin: 0 0 0.75rem;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+      }
+
+      .how-it-works > p {
+        margin: 0 0 1.75rem;
+        color: var(--muted);
+        max-width: 70ch;
+      }
+
+      .tier-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid #263040;
+        border-radius: 14px;
+        padding: 1.25rem;
+      }
+
+      .card h3 {
+        margin: 0;
+        font-size: 1.25rem;
+      }
+
+      .tagline {
+        margin: 0.3rem 0 1rem;
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .card ul {
+        margin: 0;
+        padding-left: 1.1rem;
+      }
+
+      .card li + li {
+        margin-top: 0.65rem;
+      }
+
+      .card strong {
+        color: #fff;
+      }
+
+      .premium {
+        border-color: rgba(212, 175, 55, 0.45);
+        box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.16);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero">
+        <h1>DuckDuck Club</h1>
+        <p>
+          A practical intelligence network for people making decisions across markets,
+          policy shifts, and geopolitical change.
+        </p>
+      </section>
+
+      <hr class="gold-line" />
+
+      <section class="how-it-works" aria-labelledby="how-duckduck-club-works">
+        <h2 id="how-duckduck-club-works">How DuckDuck Club Works</h2>
+        <p>
+          The club runs in two layers. <strong>Base</strong> gives you clear strategic orientation.
+          <strong>Premium</strong> adds the operating layer: deeper access, sharper context,
+          and support for execution.
+        </p>
+
+        <div class="tier-grid">
+          <article class="card">
+            <h3>Base</h3>
+            <p class="tagline">Your strategic baseline.</p>
+            <ul>
+              <li><strong>Core:</strong> A concise weekly view of what matters now, without noise.</li>
+              <li><strong>Direction:</strong> Priority themes so you can decide what deserves attention next.</li>
+              <li><strong>Positioning:</strong> Frameworks for where to lean in, hold, or stay out.</li>
+              <li><strong>Curated signal:</strong> Selected developments with clear implications, not headline volume.</li>
+            </ul>
+          </article>
+
+          <article class="card premium">
+            <h3>Premium</h3>
+            <p class="tagline">Execution context and operational depth.</p>
+            <ul>
+              <li><strong>The Sanctum:</strong> Closed strategy briefings that connect events to practical moves.</li>
+              <li><strong>Duck Tank:</strong> Candid scenario sessions where assumptions are pressure-tested.</li>
+              <li><strong>Black Book:</strong> A vetted network map of relevant operators, specialists, and decision channels.</li>
+              <li><strong>Global Moves:</strong> Real-time interpretation of cross-border shifts and second-order effects.</li>
+              <li><strong>Language Arsenal:</strong> Ready-to-use messaging and negotiation language for high-stakes contexts.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
