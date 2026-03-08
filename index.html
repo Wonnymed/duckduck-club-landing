@@ -1,173 +1,94 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DuckDuck Intelligence Layer</title>
-    <style>
-      :root {
-        color-scheme: dark;
-        --bg: #06070d;
-        --panel: rgba(15, 17, 27, 0.72);
-        --text: #f5f7ff;
-        --muted: #9ca4bf;
-        --line: rgba(255, 255, 255, 0.08);
-        --accent: #f7cd37;
-        --accent-dark: #171104;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        min-height: 100vh;
-        font-family: Inter, "Segoe UI", sans-serif;
-        color: var(--text);
-        background:
-          radial-gradient(circle at 8% 15%, rgba(247, 205, 55, 0.12), transparent 40%),
-          radial-gradient(circle at 88% 82%, rgba(68, 111, 255, 0.18), transparent 45%),
-          linear-gradient(140deg, #04050a 0%, #0a0d17 52%, #090a11 100%);
-        position: relative;
-        overflow-x: hidden;
-      }
-
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        background-image:
-          linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-        background-size: 44px 44px;
-        mask-image: radial-gradient(circle at center, black 20%, transparent 80%);
-      }
-
-      main {
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        padding: 28px;
-      }
-
-      .hero {
-        width: min(880px, 100%);
-        border: 1px solid var(--line);
-        border-radius: 24px;
-        padding: clamp(1.6rem, 4vw, 2.8rem);
-        background: var(--panel);
-        backdrop-filter: blur(8px);
-        box-shadow: 0 30px 80px rgba(4, 6, 14, 0.55);
-      }
-
-      .eyebrow {
-        width: fit-content;
-        margin: 0;
-        padding: 0.35rem 0.65rem;
-        border-radius: 999px;
-        border: 1px solid rgba(247, 205, 55, 0.34);
-        color: #ffe48c;
-        font-size: 0.76rem;
-        font-weight: 650;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-      }
-
-      h1 {
-        margin: 1rem 0 0;
-        max-width: 18ch;
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        line-height: 1.08;
-        letter-spacing: -0.03em;
-      }
-
-      .subheadline {
-        margin: 1rem 0 0;
-        max-width: 62ch;
-        color: var(--muted);
-        font-size: clamp(1rem, 2.4vw, 1.17rem);
-        line-height: 1.6;
-      }
-
-      .actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        margin-top: 1.6rem;
-      }
-
-      .btn {
-        border-radius: 10px;
-        padding: 0.75rem 1.1rem;
-        font-weight: 640;
-        font-size: 0.95rem;
-        text-decoration: none;
-        border: 1px solid transparent;
-      }
-
-      .btn-primary {
-        background: var(--accent);
-        color: var(--accent-dark);
-      }
-
-      .btn-secondary {
-        background: rgba(255, 255, 255, 0.04);
-        border-color: rgba(255, 255, 255, 0.18);
-        color: #dde4ff;
-      }
-
-      .microproof {
-        margin: 1.5rem 0 0;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem 1.1rem;
-      }
-
-      .microproof li {
-        color: #b8c1dd;
-        font-size: 0.87rem;
-        letter-spacing: 0.01em;
-      }
-
-      @media (max-width: 640px) {
-        .hero {
-          border-radius: 18px;
-        }
-
-        h1 {
-          max-width: 14ch;
-        }
-
-        .microproof {
-          gap: 0.5rem 0.85rem;
-        }
-      }
-    </style>
+    <title>DuckDuck Club</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main>
-      <section class="hero" aria-labelledby="hero-title">
-        <p class="eyebrow">Private Intelligence Layer</p>
-        <h1 id="hero-title">Operate with signal most markets never see.</h1>
-        <p class="subheadline">
-          Get hard-to-find insights, practical tools, and deeper operator discussions in one quiet channel—with access in
-          English and Spanish from day one.
-        </p>
-        <div class="actions">
-          <a class="btn btn-primary" href="#">Request Access</a>
-          <a class="btn btn-secondary" href="#">Preview the Brief</a>
-        </div>
-        <ul class="microproof" aria-label="Product proof points">
-          <li>Daily signal briefs</li>
-          <li>Weekly tool drops</li>
-          <li>EN + ES access</li>
-          <li>Global operator context</li>
-        </ul>
+    <main class="page">
+      <section class="hero">
+        <h1>DuckDuck Club</h1>
+        <p>Acesse inteligência de mercado com uma experiência premium.</p>
+      </section>
+
+      <section class="plans" aria-label="Planos disponíveis">
+        <article class="plan-card">
+          <h2>Base</h2>
+          <p class="plan-price">US$15/mês</p>
+          <ul>
+            <li>Acesso essencial ao clube</li>
+            <li>Idiomas sob demanda</li>
+          </ul>
+          <button class="cta" data-plan="base">Entrar no Base</button>
+        </article>
+
+        <article class="plan-card premium">
+          <h2>Premium</h2>
+          <p class="plan-price">US$29/mês</p>
+          <ul>
+            <li>Prioridade em conteúdos</li>
+            <li>2 idiomas inclusos</li>
+          </ul>
+          <button class="cta" data-plan="premium">Virar Premium</button>
+        </article>
       </section>
     </main>
+
+    <div
+      class="overlay hidden"
+      id="customizerOverlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <section class="modal">
+        <button class="close-btn" id="closeModal" aria-label="Fechar">×</button>
+        <h2 id="modalTitle">Personalize seu acesso</h2>
+        <p id="modalSubtitle"></p>
+
+        <div class="modal-block">
+          <div>
+            <h3>Polymarket Lab</h3>
+            <p>+US$10/mês · aprox. R$52/mês</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="polymarketToggle" />
+            <span>Ativar</span>
+          </label>
+        </div>
+
+        <div class="modal-block">
+          <h3 id="languagesTitle"></h3>
+          <p id="languagesSubtitle" class="hint"></p>
+          <div class="chip-grid" id="languageChips"></div>
+          <p id="premiumExtrasLabel" class="hint hidden"></p>
+        </div>
+
+        <aside class="summary">
+          <h3>Resumo do seu acesso</h3>
+          <p><strong>Plano:</strong> <span id="summaryPlan"></span></p>
+          <p id="summaryIncludedRow" class="hidden">
+            <strong>Inclui no plano:</strong> 2 idiomas
+          </p>
+          <p>
+            <strong>Idiomas selecionados:</strong>
+            <span id="summaryLanguages">Nenhum</span>
+          </p>
+          <p>
+            <strong>Extensões:</strong>
+            <span id="summaryExtensions">Nenhuma</span>
+          </p>
+          <p class="total">
+            <strong>Total mensal:</strong> <span id="summaryTotalUsd"></span>
+          </p>
+          <p class="hint" id="summaryTotalBrl"></p>
+          <button class="checkout">Continuar para checkout</button>
+        </aside>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
