@@ -1,157 +1,136 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DuckDuck Club</title>
-    <style>
-      :root {
-        color-scheme: dark;
-        --bg: #0b0d11;
-        --panel: #12161e;
-        --panel-2: #171c26;
-        --text: #e8edf5;
-        --muted: #a2adbf;
-        --gold: #d6ac55;
-        --border: #283140;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-        background: var(--bg);
-        color: var(--text);
-      }
-
-      main {
-        width: min(1080px, 92vw);
-        margin: 0 auto;
-        padding: 56px 0 72px;
-      }
-
-      .gold-line {
-        border: 0;
-        border-top: 1px solid var(--gold);
-        margin: 0 0 34px;
-        opacity: 0.95;
-      }
-
-      .section-title {
-        margin: 0;
-        font-size: clamp(1.8rem, 2.4vw, 2.3rem);
-        line-height: 1.15;
-        letter-spacing: 0.01em;
-      }
-
-      .section-intro {
-        margin: 12px 0 28px;
-        color: var(--muted);
-        max-width: 72ch;
-        line-height: 1.6;
-      }
-
-      .comparison {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-        gap: 18px;
-      }
-
-      .card {
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 22px;
-        background: linear-gradient(175deg, var(--panel), #10131a 65%);
-      }
-
-      .card.premium {
-        background: linear-gradient(175deg, var(--panel-2), #131926 70%);
-        border-color: #38465d;
-      }
-
-      .eyebrow {
-        margin: 0;
-        color: var(--gold);
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-      }
-
-      .card h3 {
-        margin: 8px 0 10px;
-        font-size: 1.4rem;
-      }
-
-      .card p {
-        margin: 0 0 14px;
-        color: var(--muted);
-        line-height: 1.55;
-      }
-
-      ul {
-        margin: 0;
-        padding-left: 18px;
-        display: grid;
-        gap: 9px;
-      }
-
-      li {
-        color: var(--text);
-        line-height: 1.5;
-      }
-
-      li span {
-        color: var(--muted);
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main>
-      <hr class="gold-line" />
+    <main class="page">
+      <section class="hero">
+        <h1>DuckDuck Club</h1>
+        <p>Acesse inteligência de mercado com uma experiência premium.</p>
+      </section>
 
-      <section aria-labelledby="works-title">
-        <h2 id="works-title" class="section-title">How DuckDuck Club Works</h2>
+      <section class="club-layers" aria-labelledby="clubLayersTitle">
+        <h2 id="clubLayersTitle">Como o DuckDuck Club funciona</h2>
         <p class="section-intro">
-          DuckDuck Club runs in two layers. Base gives you clear direction and signal you can act on.
-          Premium adds the operational context behind those signals so you can execute with more
-          confidence and precision.
+          O DuckDuck Club funciona em duas camadas. O Base entrega direção, contexto e sinal. O
+          Premium abre a camada mais valiosa do ecossistema, onde vivem execução, oportunidade e
+          inteligência operacional.
         </p>
 
-        <div class="comparison">
-          <article class="card base">
-            <p class="eyebrow">Layer 1</p>
+        <div class="layers-grid">
+          <article class="layer-card">
+            <p class="layer-eyebrow">Camada 1</p>
             <h3>Base</h3>
             <p>
-              The core layer for members who want strong positioning and dependable signal without
-              noise.
+              A camada de direção e posicionamento para quem quer leitura de cenário, sinal curado
+              e contexto sem ruído.
             </p>
             <ul>
-              <li><strong>Direction:</strong> <span>What to pay attention to now, and why it matters.</span></li>
-              <li><strong>Positioning:</strong> <span>How to frame your next move relative to market conditions.</span></li>
-              <li><strong>Curated Signal:</strong> <span>Filtered opportunities and risks, ranked by practical relevance.</span></li>
+              <li><strong>The Portal:</strong> visão geral e onboarding do ecossistema.</li>
+              <li><strong>The Core:</strong> direção, contexto e leitura de cenário.</li>
+              <li><strong>The Lounge:</strong> networking leve e troca entre membros.</li>
+              <li><strong>Geopolitics:</strong> sinal e contexto sobre movimentos que importam.</li>
             </ul>
           </article>
 
-          <article class="card premium">
-            <p class="eyebrow">Layer 2</p>
+          <article class="layer-card premium">
+            <p class="layer-eyebrow">Camada 2</p>
             <h3>Premium</h3>
             <p>
-              The operational layer for members who need deeper access, decision support, and context
-              for higher-stakes execution.
+              A camada mais valiosa do clube para quem quer mais profundidade, estrutura, execução
+              e acesso expandido.
             </p>
             <ul>
-              <li><strong>The Sanctum:</strong> <span>Private strategic briefings that explain the reasoning behind current plays.</span></li>
-              <li><strong>Duck Tank:</strong> <span>Live scenario reviews where ideas are pressure-tested before capital is deployed.</span></li>
-              <li><strong>Black Book:</strong> <span>An actionable repository of vetted frameworks, contacts, and playbooks.</span></li>
-              <li><strong>Global Moves:</strong> <span>Cross-market intelligence that maps regional events to portfolio implications.</span></li>
-              <li><strong>Language Arsenal:</strong> <span>Clear communication templates for negotiations, updates, and investor-facing narratives.</span></li>
+              <li><strong>The Sanctum:</strong> a camada estratégica e operacional mais profunda.</li>
+              <li><strong>Duck Tank:</strong> pitches, deals, leads e oportunidades.</li>
+              <li><strong>Black Book:</strong> frameworks, contatos e recursos curados.</li>
+              <li><strong>Global Moves:</strong> inteligência internacional aplicada ao jogo real.</li>
+              <li><strong>2 idiomas incluídos:</strong> acesso expandido no Premium.</li>
             </ul>
           </article>
         </div>
       </section>
+
+      <section class="plans" aria-label="Planos disponíveis">
+        <article class="plan-card">
+          <h2>Base</h2>
+          <p class="plan-price">US$15/mês</p>
+          <ul>
+            <li>Acesso essencial ao clube</li>
+            <li>Idiomas sob demanda</li>
+          </ul>
+          <button class="cta" data-plan="base">Entrar no Base</button>
+        </article>
+
+        <article class="plan-card premium">
+          <h2>Premium</h2>
+          <p class="plan-price">US$29/mês</p>
+          <ul>
+            <li>Prioridade em conteúdos</li>
+            <li>2 idiomas inclusos</li>
+          </ul>
+          <button class="cta" data-plan="premium">Virar Premium</button>
+        </article>
+      </section>
     </main>
+
+    <div
+      class="overlay hidden"
+      id="customizerOverlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <section class="modal">
+        <button class="close-btn" id="closeModal" aria-label="Fechar">×</button>
+        <h2 id="modalTitle">Personalize seu acesso</h2>
+        <p id="modalSubtitle"></p>
+
+        <div class="modal-block">
+          <div>
+            <h3>Polymarket Lab</h3>
+            <p>+US$10/mês · aprox. R$52/mês</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="polymarketToggle" />
+            <span>Ativar</span>
+          </label>
+        </div>
+
+        <div class="modal-block">
+          <h3 id="languagesTitle"></h3>
+          <p id="languagesSubtitle" class="hint"></p>
+          <div class="chip-grid" id="languageChips"></div>
+          <p id="premiumExtrasLabel" class="hint hidden"></p>
+        </div>
+
+        <aside class="summary">
+          <h3>Resumo do seu acesso</h3>
+          <p><strong>Plano:</strong> <span id="summaryPlan"></span></p>
+          <p id="summaryIncludedRow" class="hidden">
+            <strong>Inclui no plano:</strong> 2 idiomas
+          </p>
+          <p>
+            <strong>Idiomas selecionados:</strong>
+            <span id="summaryLanguages">Nenhum</span>
+          </p>
+          <p>
+            <strong>Extensões:</strong>
+            <span id="summaryExtensions">Nenhuma</span>
+          </p>
+          <p class="total">
+            <strong>Total mensal:</strong> <span id="summaryTotalUsd"></span>
+          </p>
+          <p class="hint" id="summaryTotalBrl"></p>
+          <button class="checkout">Continuar para checkout</button>
+        </aside>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>

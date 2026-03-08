@@ -1,0 +1,245 @@
+:root {
+  --bg: #08090c;
+  --card: #111722;
+  --card-alt: #171d2a;
+  --panel: rgba(20, 22, 28, 0.78);
+  --text: #f8f8fa;
+  --muted: #b6bac6;
+  --line: rgba(255, 255, 255, 0.14);
+  --border: rgba(255, 255, 255, 0.12);
+  --gold: #d9b36b;
+  --gold-soft: #a98747;
+  --accent: #d9b36b;
+  --accent-soft: rgba(217, 179, 107, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(217, 179, 107, 0.16), transparent 35%),
+    radial-gradient(circle at 85% 20%, rgba(102, 118, 202, 0.14), transparent 40%),
+    linear-gradient(165deg, #06070a, #0d1017 48%, #08090c);
+}
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 48px 20px 72px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hero h1 {
+  margin-bottom: 12px;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+
+.hero p {
+  color: var(--muted);
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+.plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.plan-card {
+  background: linear-gradient(160deg, var(--card), #0f1320);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.plan-card.premium {
+  background: linear-gradient(160deg, #181b16, #17140f 65%, #1b1711);
+  border-color: rgba(217, 179, 107, 0.24);
+}
+
+.plan-price {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.plan-card ul {
+  color: var(--muted);
+  padding-left: 20px;
+  min-height: 80px;
+  line-height: 1.65;
+}
+
+.cta,
+.checkout {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.cta:hover,
+.checkout:hover {
+  transform: translateY(-1px);
+}
+
+.cta,
+.checkout {
+  background: linear-gradient(150deg, #e2bf7d, #b18847);
+  color: #1c1306;
+  box-shadow: 0 8px 20px rgba(179, 136, 71, 0.28);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 4, 10, 0.76);
+  backdrop-filter: blur(8px);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal {
+  position: relative;
+  width: min(940px, 100%);
+  background: linear-gradient(160deg, #0d1320, #101827 60%, #0d1320);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 2fr 1fr;
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.modal > h2,
+.modal > p,
+.modal > .modal-block {
+  grid-column: 1 / 2;
+}
+
+.summary {
+  grid-column: 2 / 3;
+  grid-row: 1 / span 4;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-block {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.modal-block h3 {
+  margin: 0 0 6px;
+}
+
+.modal-block p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.switch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.chip {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 7px 12px;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.chip:hover {
+  transform: translateY(-1px);
+}
+
+.chip.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: #f9f2e5;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.total {
+  font-size: 1.1rem;
+  margin-top: 12px;
+}
+
+@media (max-width: 850px) {
+  .modal {
+    grid-template-columns: 1fr;
+  }
+
+  .modal > h2,
+  .modal > p,
+  .modal > .modal-block,
+  .summary {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
