@@ -4,11 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const overlay = document.getElementById('customizerOverlay');
   const modal = overlay?.querySelector('.modal');
   const closeBtn = document.getElementById('closeModal');
-  const planButtons = document.querySelectorAll('[data-plan-trigger]');
   const chipsContainer = document.getElementById('languageChips');
   const polymarketToggle = document.getElementById('polymarketToggle');
 
-  if (!overlay || !modal || !closeBtn || !chipsContainer || !polymarketToggle || !planButtons.length) return;
+  if (!overlay || !modal || !closeBtn || !chipsContainer || !polymarketToggle) return;
 
   const state = {
     plan: 'base',
@@ -85,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Você selecionou o Premium. Seus 2 primeiros idiomas já estão incluídos no plano. Se quiser expandir ainda mais, adicione idiomas extras e o Polymarket Lab.';
       elements.languagesTitle.textContent = 'Escolha seus idiomas';
       elements.languagesSubtitle.textContent =
-        '2 idiomas já estão incluídos no Premium. A partir do 3º idioma, +US$5/mês por idioma adicional.';
+        '2 idiomas já estão incluídos no Premium. A partir do 3º idioma: +US$5/mês por idioma.';
       elements.languagesProgress.textContent = `${Math.min(2, selected.length)}/2 idiomas incluídos selecionados`;
       elements.languagesProgress.classList.remove('hidden');
       elements.summaryIncludedItems.textContent =
@@ -129,9 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('modal-open');
   };
 
-  planButtons.forEach((button) => {
-    button.type = 'button';
-    button.addEventListener('click', () => openModal(button.dataset.planTrigger));
+  document.addEventListener('click', (event) => {
+    const trigger = event.target.closest('[data-plan-trigger]');
+    if (!trigger) return;
+    trigger.type = 'button';
+    openModal(trigger.dataset.planTrigger);
   });
 
   polymarketToggle.addEventListener('click', () => {
