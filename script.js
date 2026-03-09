@@ -15,7 +15,13 @@ const state = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById("customizerOverlay");
+  if (window.__duckClubModalBindingsInitialized) return;
+  window.__duckClubModalBindingsInitialized = true;
+  const overlayElements = document.querySelectorAll("#customizerOverlay");
+  if (overlayElements.length !== 1) return;
+
+  const overlay = overlayElements[0];
+  const modal = overlay.querySelector(".modal");
   const subtitle = document.getElementById("modalSubtitle");
   const planLabel = document.getElementById("planLabel");
   const languagesTitle = document.getElementById("languagesTitle");
@@ -147,8 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
     overlay.classList.add("hidden");
   }
 
-  document.querySelectorAll("button[data-plan]").forEach((button) => {
-    button.addEventListener("click", () => openModal(button.dataset.plan));
+  document.querySelectorAll("button[data-plan-trigger]").forEach((button) => {
+    button.addEventListener("click", () => openModal(button.dataset.planTrigger));
   });
 
   polymarketToggle.addEventListener("click", () => {
@@ -159,8 +165,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("closeModal").addEventListener("click", closeModal);
 
+  modal?.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+
   overlay.addEventListener("click", (event) => {
-    if (event.target === overlay) closeModal();
+    if (event.target === event.currentTarget) closeModal();
   });
 
   document.getElementById("openAccess").addEventListener("click", () => {
