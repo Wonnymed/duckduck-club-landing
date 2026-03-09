@@ -94,7 +94,7 @@
               <li>Idiomas sob demanda</li>
               <li>Sinal curado e comunidade filtrada</li>
             </ul>
-            <button class="cta" data-plan="base">Escolher Base</button>
+            <button class="cta" type="button" data-plan="base">Escolher Base</button>
           </article>
 
           <article class="plan-card premium">
@@ -110,7 +110,7 @@
               <li>Sanctum, Duck Tank e Black Book</li>
               <li>Mais contexto, execução e acesso direto</li>
             </ul>
-            <button class="cta" data-plan="premium">Escolher Premium</button>
+            <button class="cta" type="button" data-plan="premium">Escolher Premium</button>
           </article>
         </div>
       </section>
@@ -125,36 +125,47 @@
           <h2 id="modalTitle">Personalize seu acesso</h2>
           <p id="modalSubtitle"></p>
 
-          <div class="modal-block">
-            <div>
+          <article class="modal-block add-on-block">
+            <div class="block-head">
               <h3>Polymarket Lab</h3>
               <p>+US$10/mês · aprox. R$52/mês</p>
             </div>
-            <label class="switch">
-              <input type="checkbox" id="polymarketToggle" />
-              <span>Ativar</span>
-            </label>
-          </div>
+            <p class="hint">Camada opcional para leitura de fluxo, narrativa e oportunidade em tempo real.</p>
+            <button class="addon-pill" id="polymarketToggle" type="button" aria-pressed="false">Adicionar</button>
+          </article>
 
-          <div class="modal-block">
+          <article class="modal-block">
             <h3 id="languagesTitle"></h3>
             <p id="languagesSubtitle" class="hint"></p>
+            <p id="languagesProgress" class="language-progress hidden"></p>
             <div class="chip-grid" id="languageChips"></div>
-            <p id="premiumExtrasLabel" class="hint hidden"></p>
-          </div>
+            <div id="premiumExtrasBlock" class="extras-block hidden">
+              <p class="extras-title">Idiomas adicionais (opcional)</p>
+              <p id="premiumExtrasLabel" class="hint"></p>
+            </div>
+          </article>
         </div>
 
         <aside class="summary">
-          <p class="summary-title">Checkout Intelligence Panel</p>
-          <p><strong>Plano escolhido:</strong> <span id="summaryPlan"></span></p>
-          <p id="summaryIncludedRow" class="hidden"><strong>Idiomas incluídos:</strong> 2</p>
-          <p><strong>Idiomas selecionados:</strong> <span id="summaryLanguages">Nenhum</span></p>
-          <p><strong>Idiomas extras:</strong> <span id="summaryLanguageExtras">Nenhum</span></p>
-          <p><strong>Polymarket Lab:</strong> <span id="summaryPolymarket">Não</span></p>
-          <p class="total"><strong>Total mensal:</strong> <span id="summaryTotalUsd"></span></p>
+          <p class="summary-title">Resumo do seu acesso</p>
+          <div class="summary-group">
+            <p><strong>Plano escolhido</strong></p>
+            <p class="summary-value" id="summaryPlan"></p>
+          </div>
+          <div class="summary-group">
+            <p><strong>Idiomas selecionados</strong></p>
+            <p class="summary-value" id="summaryLanguages">Nenhum</p>
+            <p id="summaryIncludedRow" class="hint hidden">2 idiomas incluídos no Premium</p>
+            <p class="hint"><span>Idiomas adicionais:</span> <span id="summaryLanguageExtras">Nenhum</span></p>
+          </div>
+          <div class="summary-group">
+            <p><strong>Add-ons</strong></p>
+            <p class="summary-value"><span>Polymarket Lab:</span> <span id="summaryPolymarket">Não adicionado</span></p>
+          </div>
+          <p class="total"><strong>Total mensal</strong> <span id="summaryTotalUsd"></span></p>
           <p class="hint" id="summaryTotalBrl"></p>
-          <p class="hint">Cobrança internacional. Cancele quando quiser.</p>
-          <button class="checkout">Continuar para checkout</button>
+          <button class="checkout" type="button">Continuar para checkout</button>
+          <p class="hint summary-note">Cobrança internacional. Cancele quando quiser.</p>
         </aside>
       </section>
     </div>
