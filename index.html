@@ -94,7 +94,7 @@
               <li>Idiomas sob demanda</li>
               <li>Sinal curado e comunidade filtrada</li>
             </ul>
-            <button class="cta" type="button" data-plan-trigger="base">Escolher Base</button>
+            <button type="button" class="plan-open-btn cta cta-gold" data-plan-trigger="base">Escolher Base</button>
           </article>
 
           <article class="plan-card premium">
@@ -110,7 +110,7 @@
               <li>Sanctum, Duck Tank e Black Book</li>
               <li>Mais contexto, execução e acesso direto</li>
             </ul>
-            <button class="cta" type="button" data-plan-trigger="premium">Escolher Premium</button>
+            <button type="button" class="plan-open-btn cta cta-gold" data-plan-trigger="premium">Escolher Premium</button>
           </article>
         </div>
       </section>
@@ -139,9 +139,10 @@
             <p id="languagesSubtitle" class="hint"></p>
             <p id="languagesProgress" class="language-progress hidden"></p>
             <div class="chip-grid" id="languageChips"></div>
-            <div id="premiumExtrasBlock" class="extras-block hidden">
+            <div id="premiumExtrasPanel" class="extras-block hidden">
               <p class="extras-title">Idiomas adicionais (opcional)</p>
               <p id="premiumExtrasLabel" class="hint"></p>
+              <p class="hint">Selecionados além dos 2 incluídos: <span id="extraLanguageCount">0</span></p>
             </div>
           </article>
         </div>
@@ -153,14 +154,16 @@
             <p class="summary-value" id="summaryPlan"></p>
           </div>
           <div class="summary-group">
-            <p><strong>Idiomas selecionados</strong></p>
-            <p class="summary-value" id="summaryLanguages">Nenhum</p>
-            <p id="summaryIncludedRow" class="hint hidden">2 idiomas incluídos no Premium</p>
-            <p class="hint"><span>Idiomas adicionais:</span> <span id="summaryLanguageExtras">Nenhum</span></p>
+            <p><strong>Itens inclusos</strong></p>
+            <p class="summary-value" id="summaryIncludedItems"></p>
           </div>
           <div class="summary-group">
-            <p><strong>Add-ons</strong></p>
-            <p class="summary-value"><span>Polymarket Lab:</span> <span id="summaryPolymarket">Não adicionado</span></p>
+            <p><strong>Idiomas selecionados</strong></p>
+            <p class="summary-value" id="summaryLanguages">Nenhum</p>
+          </div>
+          <div class="summary-group">
+            <p><strong>Extensões</strong></p>
+            <p class="summary-value" id="summaryExtensions">Nenhum</p>
           </div>
           <p class="total"><strong>Total mensal</strong> <span id="summaryTotalUsd"></span></p>
           <p class="hint" id="summaryTotalBrl"></p>
