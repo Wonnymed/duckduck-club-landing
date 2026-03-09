@@ -119,7 +119,7 @@ overlay.addEventListener("click", (event) => {
 });
 
 document.getElementById("openAccess").addEventListener("click", () => {
-  document.getElementById("mainHero").scrollIntoView({ behavior: "smooth", block: "start" });
+  document.getElementById("pricing").scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
 const observer = new IntersectionObserver(
