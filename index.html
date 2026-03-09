@@ -1,88 +1,136 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DuckDuck Club | Pricing Layers</title>
+    <title>DuckDuck Club</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main class="page">
-      <section class="pricing" id="pricing">
-        <header class="pricing-header">
-          <p class="eyebrow">Pricing</p>
-          <h1>Choose the depth your business needs right now.</h1>
-          <p class="intro">
-            DuckDuck Club keeps the choice simple: start with clear direction or unlock the full operational and
-            strategic layer.
-          </p>
-        </header>
+      <section class="hero">
+        <h1>DuckDuck Club</h1>
+        <p>Acesse inteligência de mercado com uma experiência premium.</p>
+      </section>
 
-        <div class="pricing-grid">
-          <article class="plan-card base">
-            <div class="plan-title-group">
-              <h2>Base</h2>
-              <p class="plan-role">Clear and directional for fast-moving founders.</p>
-            </div>
+      <section class="club-layers" aria-labelledby="clubLayersTitle">
+        <h2 id="clubLayersTitle">Como o DuckDuck Club funciona</h2>
+        <p class="section-intro">
+          O DuckDuck Club funciona em duas camadas. O Base entrega direção, contexto e sinal. O
+          Premium abre a camada mais valiosa do ecossistema, onde vivem execução, oportunidade e
+          inteligência operacional.
+        </p>
 
-            <p class="price-line">
-              <span class="currency">USD</span>
-              <span class="amount">$690</span>
-              <span class="period">/month</span>
+        <div class="layers-grid">
+          <article class="layer-card">
+            <p class="layer-eyebrow">Camada 1</p>
+            <h3>Base</h3>
+            <p>
+              A camada de direção e posicionamento para quem quer leitura de cenário, sinal curado
+              e contexto sem ruído.
             </p>
-            <p class="price-support">≈ R$ 3.500 / mês</p>
-
-            <p class="plan-summary">
-              Get focused weekly direction, decision clarity, and momentum without operational complexity.
-            </p>
-
-            <ul class="plan-points">
-              <li>Weekly strategic check-ins and priorities</li>
-              <li>Hands-on guidance for your next key moves</li>
-              <li>Simple accountability to keep execution moving</li>
+            <ul>
+              <li><strong>The Portal:</strong> visão geral e onboarding do ecossistema.</li>
+              <li><strong>The Core:</strong> direção, contexto e leitura de cenário.</li>
+              <li><strong>The Lounge:</strong> networking leve e troca entre membros.</li>
+              <li><strong>Geopolitics:</strong> sinal e contexto sobre movimentos que importam.</li>
             </ul>
-
-            <a class="cta secondary" href="#">Start with Base</a>
-            <p class="reassurance">You can move up anytime as your operation grows.</p>
           </article>
 
-          <article class="plan-card premium">
-            <div class="badge">Most Popular · Premium Layer</div>
-            <div class="plan-title-group">
-              <h2>Premium</h2>
-              <p class="plan-role">Operational + strategic depth for teams scaling with intent.</p>
-            </div>
-
-            <p class="price-line">
-              <span class="currency">USD</span>
-              <span class="amount">$1,490</span>
-              <span class="period">/month</span>
+          <article class="layer-card premium">
+            <p class="layer-eyebrow">Camada 2</p>
+            <h3>Premium</h3>
+            <p>
+              A camada mais valiosa do clube para quem quer mais profundidade, estrutura, execução
+              e acesso expandido.
             </p>
-            <p class="price-support">≈ R$ 7.500 / mês</p>
-
-            <p class="anchor-line">Premium unlocks the most valuable layer of DuckDuck Club.</p>
-
-            <p class="plan-summary">
-              Beyond strategic sessions, Premium adds an active operating layer to help your team execute better,
-              faster, and with more confidence.
-            </p>
-
-            <ul class="plan-points">
-              <li>Full strategic advisory + ongoing operational guidance</li>
-              <li>Workflow support, execution review, and team rhythm optimization</li>
-              <li>Priority access for complex decisions and growth sprints</li>
+            <ul>
+              <li><strong>The Sanctum:</strong> a camada estratégica e operacional mais profunda.</li>
+              <li><strong>Duck Tank:</strong> pitches, deals, leads e oportunidades.</li>
+              <li><strong>Black Book:</strong> frameworks, contatos e recursos curados.</li>
+              <li><strong>Global Moves:</strong> inteligência internacional aplicada ao jogo real.</li>
+              <li><strong>2 idiomas incluídos:</strong> acesso expandido no Premium.</li>
             </ul>
-
-            <a class="cta primary" href="#">Unlock Premium</a>
-            <p class="reassurance">No lock-in: choose what fits now and evolve when ready.</p>
           </article>
         </div>
+      </section>
 
-        <aside class="addons">
-          <h3>Optional Add-ons</h3>
-          <p>Special projects, workshops, and focused implementation sprints can be added to either layer.</p>
-        </aside>
+      <section class="plans" aria-label="Planos disponíveis">
+        <article class="plan-card">
+          <h2>Base</h2>
+          <p class="plan-price">US$15/mês</p>
+          <ul>
+            <li>Acesso essencial ao clube</li>
+            <li>Idiomas sob demanda</li>
+          </ul>
+          <button class="cta" data-plan="base">Entrar no Base</button>
+        </article>
+
+        <article class="plan-card premium">
+          <h2>Premium</h2>
+          <p class="plan-price">US$29/mês</p>
+          <ul>
+            <li>Prioridade em conteúdos</li>
+            <li>2 idiomas inclusos</li>
+          </ul>
+          <button class="cta" data-plan="premium">Virar Premium</button>
+        </article>
       </section>
     </main>
+
+    <div
+      class="overlay hidden"
+      id="customizerOverlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <section class="modal">
+        <button class="close-btn" id="closeModal" aria-label="Fechar">×</button>
+        <h2 id="modalTitle">Personalize seu acesso</h2>
+        <p id="modalSubtitle"></p>
+
+        <div class="modal-block">
+          <div>
+            <h3>Polymarket Lab</h3>
+            <p>+US$10/mês · aprox. R$52/mês</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="polymarketToggle" />
+            <span>Ativar</span>
+          </label>
+        </div>
+
+        <div class="modal-block">
+          <h3 id="languagesTitle"></h3>
+          <p id="languagesSubtitle" class="hint"></p>
+          <div class="chip-grid" id="languageChips"></div>
+          <p id="premiumExtrasLabel" class="hint hidden"></p>
+        </div>
+
+        <aside class="summary">
+          <h3>Resumo do seu acesso</h3>
+          <p><strong>Plano:</strong> <span id="summaryPlan"></span></p>
+          <p id="summaryIncludedRow" class="hidden">
+            <strong>Inclui no plano:</strong> 2 idiomas
+          </p>
+          <p>
+            <strong>Idiomas selecionados:</strong>
+            <span id="summaryLanguages">Nenhum</span>
+          </p>
+          <p>
+            <strong>Extensões:</strong>
+            <span id="summaryExtensions">Nenhuma</span>
+          </p>
+          <p class="total">
+            <strong>Total mensal:</strong> <span id="summaryTotalUsd"></span>
+          </p>
+          <p class="hint" id="summaryTotalBrl"></p>
+          <button class="checkout">Continuar para checkout</button>
+        </aside>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
