@@ -36,6 +36,10 @@ body {
   animation: ambient-glow 22s ease-in-out infinite alternate;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 .page {
   max-width: 1160px;
   margin: 0 auto;

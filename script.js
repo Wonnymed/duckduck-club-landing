@@ -1,180 +1,199 @@
 const LANGUAGE_OPTIONS = ["English", "Spanish", "Italian", "French", "German", "Mandarin", "Korean", "Japanese"];
 
-const PRICES = {
-  base: 15,
-  premium: 29,
-  polymarket: 10,
-  language: 5,
-  usdToBrl: 5.2,
-};
-
-const state = {
-  plan: null,
-  polymarket: false,
-  languages: new Set(),
-};
-
 document.addEventListener("DOMContentLoaded", () => {
-  if (window.__duckClubModalBindingsInitialized) return;
-  window.__duckClubModalBindingsInitialized = true;
-  const overlayElements = document.querySelectorAll("#customizerOverlay");
-  if (overlayElements.length !== 1) return;
+  const overlay = document.getElementById("customizerOverlay");
+  const modal = overlay?.querySelector(".modal");
+  const closeBtn = document.getElementById("closeModal");
+  const planButtons = document.querySelectorAll("[data-plan-trigger]");
 
-  const overlay = overlayElements[0];
-  const modal = overlay.querySelector(".modal");
-  const subtitle = document.getElementById("modalSubtitle");
-  const planLabel = document.getElementById("planLabel");
-  const languagesTitle = document.getElementById("languagesTitle");
-  const languagesSubtitle = document.getElementById("languagesSubtitle");
-  const languagesProgress = document.getElementById("languagesProgress");
-  const premiumExtrasBlock = document.getElementById("premiumExtrasBlock");
-  const premiumExtrasLabel = document.getElementById("premiumExtrasLabel");
+  if (!overlay || !modal || !closeBtn || !planButtons.length) {
+    console.error("Modal elements not found.");
+    return;
+  }
+
+  const state = {
+    plan: null,
+    polymarket: false,
+    selectedLanguages: new Set(),
+    extraLanguages: 0,
+  };
+
   const chipsContainer = document.getElementById("languageChips");
   const polymarketToggle = document.getElementById("polymarketToggle");
 
-  const summaryPlan = document.getElementById("summaryPlan");
-  const summaryIncludedRow = document.getElementById("summaryIncludedRow");
-  const summaryLanguages = document.getElementById("summaryLanguages");
-  const summaryLanguageExtras = document.getElementById("summaryLanguageExtras");
-  const summaryPolymarket = document.getElementById("summaryPolymarket");
-  const summaryTotalUsd = document.getElementById("summaryTotalUsd");
-  const summaryTotalBrl = document.getElementById("summaryTotalBrl");
+  const PRICES = {
+    base: 15,
+    premium: 29,
+    polymarket: 10,
+    language: 5,
+    usdToBrl: 5.2,
+  };
 
-  const summaryTargets = [summaryTotalUsd, summaryTotalBrl];
-
-  function pulseSummaryTotals() {
-    summaryTargets.forEach((target) => target.classList.add("pulse-update"));
-    window.setTimeout(() => {
-      summaryTargets.forEach((target) => target.classList.remove("pulse-update"));
-    }, 260);
+  function recalculateExtras() {
+    state.extraLanguages = state.plan === "premium" ? Math.max(0, state.selectedLanguages.size - 2) : 0;
   }
 
-  function setPolymarketButtonState() {
-    const active = state.polymarket;
-    polymarketToggle.classList.toggle("active", active);
-    polymarketToggle.textContent = active ? "Adicionado" : "Adicionar";
-    polymarketToggle.setAttribute("aria-pressed", String(active));
-  }
+  function resetState(plan) {
+    state.plan = plan;
+    state.polymarket = false;
+    state.selectedLanguages = new Set();
+    state.extraLanguages = 0;
 
-  function getPremiumProgress(selectedCount) {
-    if (selectedCount === 1) return "1/2 selecionado";
-    return `${Math.min(selectedCount, 2)}/2 selecionados`;
+    const polymarketToggle = document.getElementById("polymarketToggle");
+    if (polymarketToggle) {
+      polymarketToggle.checked = false;
+      polymarketToggle.classList.remove("active");
+      polymarketToggle.setAttribute("aria-pressed", "false");
+      polymarketToggle.textContent = "Adicionar";
+    }
   }
 
   function openModal(plan) {
-    if (!["base", "premium"].includes(plan)) return;
+    if (!plan) return;
 
-    state.plan = plan;
-    state.polymarket = false;
-    state.languages = new Set();
-    setPolymarketButtonState();
-
-    if (plan === "base") {
-      planLabel.textContent = "BASE";
-      subtitle.textContent = "Você escolheu o Base. Monte seu acesso e siga para o checkout.";
-      languagesTitle.textContent = "Escolha os idiomas do seu acesso";
-      languagesSubtitle.textContent = "+US$5/mês por idioma · aprox. R$26/mês por idioma";
-      languagesProgress.classList.add("hidden");
-      summaryIncludedRow.classList.add("hidden");
-      premiumExtrasBlock.classList.add("hidden");
-    } else {
-      planLabel.textContent = "PREMIUM";
-      subtitle.textContent = "Você escolheu o Premium. Selecione seus 2 idiomas incluídos e personalize seu acesso.";
-      languagesTitle.textContent = "Escolha seus 2 idiomas incluídos";
-      languagesSubtitle.textContent = "Após os 2 incluídos, idiomas extras podem ser adicionados por +US$5/mês.";
-      languagesProgress.classList.remove("hidden");
-      summaryIncludedRow.classList.remove("hidden");
-    }
-
-    renderChips();
-    refreshSummary();
+    resetState(plan);
+    renderLanguageChips();
+    updateModalContent();
     overlay.classList.remove("hidden");
-  }
-
-  function renderChips() {
-    chipsContainer.innerHTML = "";
-
-    for (const lang of LANGUAGE_OPTIONS) {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "chip";
-      button.textContent = lang;
-      button.classList.toggle("active", state.languages.has(lang));
-
-      button.addEventListener("click", () => {
-        if (state.languages.has(lang)) {
-          state.languages.delete(lang);
-        } else {
-          state.languages.add(lang);
-        }
-
-        renderChips();
-        refreshSummary();
-      });
-
-      chipsContainer.appendChild(button);
-    }
-  }
-
-  function calculateTotal() {
-    const langCount = state.languages.size;
-    const billableLanguages = state.plan === "premium" ? Math.max(0, langCount - 2) : langCount;
-    return PRICES[state.plan] + (state.polymarket ? PRICES.polymarket : 0) + billableLanguages * PRICES.language;
-  }
-
-  function refreshSummary() {
-    const selected = [...state.languages];
-    const selectedCount = selected.length;
-    const extrasCount = state.plan === "premium" ? Math.max(0, selectedCount - 2) : selectedCount;
-
-    summaryPlan.textContent = state.plan === "premium" ? "Premium · US$29/mês" : "Base · US$15/mês";
-    summaryLanguages.textContent = selectedCount ? selected.join(", ") : "Nenhum";
-    summaryLanguageExtras.textContent = extrasCount ? `${extrasCount} idioma(s)` : "Nenhum";
-    summaryPolymarket.textContent = state.polymarket ? "Adicionado" : "Não adicionado";
-
-    if (state.plan === "premium") {
-      languagesProgress.textContent = getPremiumProgress(selectedCount);
-
-      if (selectedCount >= 2) {
-        premiumExtrasBlock.classList.remove("hidden");
-        premiumExtrasLabel.textContent = "Idiomas extras serão cobrados apenas a partir do 3º idioma.";
-      } else {
-        premiumExtrasBlock.classList.add("hidden");
-      }
-    }
-
-    const total = calculateTotal();
-    summaryTotalUsd.textContent = `US$${total}`;
-    summaryTotalBrl.textContent = `aprox. R$${Math.round(total * PRICES.usdToBrl)}/mês`;
-    pulseSummaryTotals();
+    document.body.classList.add("modal-open");
   }
 
   function closeModal() {
     overlay.classList.add("hidden");
+    document.body.classList.remove("modal-open");
   }
 
-  document.querySelectorAll("button[data-plan-trigger]").forEach((button) => {
-    button.addEventListener("click", () => openModal(button.dataset.planTrigger));
+  function updateModalContent() {
+    const subtitle = document.getElementById("modalSubtitle");
+    const languagesTitle = document.getElementById("languagesTitle");
+    const languagesSubtitle = document.getElementById("languagesSubtitle");
+    const summaryPlan = document.getElementById("summaryPlan");
+    const summaryIncludedItems = document.getElementById("summaryIncludedItems");
+    const summaryLanguages = document.getElementById("summaryLanguages");
+    const summaryExtensions = document.getElementById("summaryExtensions");
+    const summaryTotalUsd = document.getElementById("summaryTotalUsd");
+    const summaryTotalBrl = document.getElementById("summaryTotalBrl");
+    const premiumExtrasPanel = document.getElementById("premiumExtrasPanel");
+    const premiumExtrasLabel = document.getElementById("premiumExtrasLabel");
+    const extraLanguageCount = document.getElementById("extraLanguageCount");
+
+    if (!subtitle || !languagesTitle || !languagesSubtitle || !summaryPlan || !summaryIncludedItems || !summaryLanguages || !summaryExtensions || !summaryTotalUsd || !summaryTotalBrl) {
+      return;
+    }
+
+    recalculateExtras();
+
+    if (state.plan === "base") {
+      subtitle.textContent = "Você selecionou o Base. Agora escolha os idiomas que deseja liberar no seu acesso.";
+      languagesTitle.textContent = "Escolha os idiomas do seu acesso";
+      languagesSubtitle.textContent = "+US$5/mês por idioma · aprox. R$26/mês por idioma";
+      summaryIncludedItems.textContent = "The Portal, The Core, The Lounge e Geopolitics";
+      if (premiumExtrasPanel) premiumExtrasPanel.classList.add("hidden");
+    } else {
+      subtitle.textContent = "Você selecionou o Premium. Os 2 primeiros idiomas já estão incluídos no plano.";
+      languagesTitle.textContent = "Escolha seus 2 idiomas incluídos";
+      languagesSubtitle.textContent = "A partir do terceiro idioma: +US$5/mês por idioma adicional.";
+      summaryIncludedItems.textContent = "The Sanctum, Duck Tank, Black Book, Global Moves e 2 idiomas incluídos";
+
+      if (premiumExtrasPanel) {
+        premiumExtrasPanel.classList.toggle("hidden", state.selectedLanguages.size < 2);
+      }
+      if (premiumExtrasLabel) {
+        premiumExtrasLabel.textContent = "Idiomas extras: +US$5/mês por idioma adicional";
+      }
+      if (extraLanguageCount) {
+        extraLanguageCount.textContent = String(state.extraLanguages);
+      }
+    }
+
+    summaryPlan.textContent = state.plan === "premium" ? "Premium" : "Base";
+
+    const selected = [...state.selectedLanguages];
+    summaryLanguages.textContent = selected.length ? selected.join(", ") : "Nenhum";
+
+    const addOns = [];
+    if (state.polymarket) addOns.push("Polymarket Lab");
+    if (state.plan === "base" && selected.length > 0) addOns.push(`${selected.length} idioma(s)`);
+    if (state.plan === "premium" && state.extraLanguages > 0) addOns.push(`${state.extraLanguages} idioma(s) extra(s)`);
+
+    summaryExtensions.textContent = addOns.length ? addOns.join(" + ") : "Nenhum";
+
+    const total =
+      PRICES[state.plan] +
+      (state.polymarket ? PRICES.polymarket : 0) +
+      (state.plan === "base" ? selected.length * PRICES.language : state.extraLanguages * PRICES.language);
+
+    summaryTotalUsd.textContent = `US$${total}`;
+    summaryTotalBrl.textContent = `aprox. R$${Math.round(total * PRICES.usdToBrl)}/mês`;
+  }
+
+  function renderLanguageChips() {
+    if (!chipsContainer) return;
+    chipsContainer.innerHTML = "";
+
+    LANGUAGE_OPTIONS.forEach((lang) => {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "chip";
+      chip.textContent = lang;
+      chip.classList.toggle("active", state.selectedLanguages.has(lang));
+
+      chip.addEventListener("click", () => {
+        if (state.selectedLanguages.has(lang)) {
+          state.selectedLanguages.delete(lang);
+        } else {
+          state.selectedLanguages.add(lang);
+        }
+
+        renderLanguageChips();
+        updateModalContent();
+      });
+
+      chipsContainer.appendChild(chip);
+    });
+  }
+
+  planButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const plan = button.getAttribute("data-plan-trigger");
+      openModal(plan);
+    });
   });
 
-  polymarketToggle.addEventListener("click", () => {
-    state.polymarket = !state.polymarket;
-    setPolymarketButtonState();
-    refreshSummary();
-  });
-
-  document.getElementById("closeModal").addEventListener("click", closeModal);
-
-  modal?.addEventListener("click", (event) => {
+  closeBtn.addEventListener("click", (event) => {
+    event.preventDefault();
     event.stopPropagation();
+    closeModal();
   });
 
   overlay.addEventListener("click", (event) => {
-    if (event.target === event.currentTarget) closeModal();
+    if (event.target === overlay) {
+      closeModal();
+    }
   });
 
-  document.getElementById("openAccess").addEventListener("click", () => {
-    document.getElementById("pricing").scrollIntoView({ behavior: "smooth", block: "start" });
+  modal.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !overlay.classList.contains("hidden")) {
+      closeModal();
+    }
+  });
+
+  polymarketToggle?.addEventListener("click", () => {
+    state.polymarket = !state.polymarket;
+    polymarketToggle.classList.toggle("active", state.polymarket);
+    polymarketToggle.setAttribute("aria-pressed", String(state.polymarket));
+    polymarketToggle.textContent = state.polymarket ? "Adicionado" : "Adicionar";
+    updateModalContent();
+  });
+
+  document.getElementById("openAccess")?.addEventListener("click", () => {
+    document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
   const observer = new IntersectionObserver(
