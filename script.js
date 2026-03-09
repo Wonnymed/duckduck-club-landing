@@ -1,214 +1,164 @@
-const LANGUAGE_OPTIONS = ["English", "Spanish", "Italian", "French", "German", "Mandarin", "Korean", "Japanese"];
+const LANGUAGE_OPTIONS = ['English', 'Spanish', 'Italian', 'French', 'German', 'Mandarin', 'Korean', 'Japanese'];
 
-document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById("customizerOverlay");
-  const modal = overlay?.querySelector(".modal");
-  const closeBtn = document.getElementById("closeModal");
-  const planButtons = document.querySelectorAll("[data-plan-trigger]");
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('customizerOverlay');
+  const modal = overlay?.querySelector('.modal');
+  const closeBtn = document.getElementById('closeModal');
+  const planButtons = document.querySelectorAll('[data-plan-trigger]');
+  const chipsContainer = document.getElementById('languageChips');
+  const polymarketToggle = document.getElementById('polymarketToggle');
 
-  if (!overlay || !modal || !closeBtn || !planButtons.length) {
-    console.error("Modal elements not found.");
-    return;
-  }
+  if (!overlay || !modal || !closeBtn || !chipsContainer || !polymarketToggle || !planButtons.length) return;
 
   const state = {
-    plan: null,
+    plan: 'base',
     polymarket: false,
     selectedLanguages: new Set(),
     extraLanguages: 0,
   };
 
-  const chipsContainer = document.getElementById("languageChips");
-  const polymarketToggle = document.getElementById("polymarketToggle");
+  const PRICES = { base: 15, premium: 29, polymarket: 10, language: 5, usdToBrl: 5.2 };
 
-  const PRICES = {
-    base: 15,
-    premium: 29,
-    polymarket: 10,
-    language: 5,
-    usdToBrl: 5.2,
+  const elements = {
+    planLabel: document.getElementById('planLabel'),
+    subtitle: document.getElementById('modalSubtitle'),
+    languagesTitle: document.getElementById('languagesTitle'),
+    languagesSubtitle: document.getElementById('languagesSubtitle'),
+    languagesProgress: document.getElementById('languagesProgress'),
+    premiumExtrasPanel: document.getElementById('premiumExtrasPanel'),
+    premiumExtrasLabel: document.getElementById('premiumExtrasLabel'),
+    extraLanguageCount: document.getElementById('extraLanguageCount'),
+    summaryPlan: document.getElementById('summaryPlan'),
+    summaryIncludedItems: document.getElementById('summaryIncludedItems'),
+    summaryLanguages: document.getElementById('summaryLanguages'),
+    summaryExtensions: document.getElementById('summaryExtensions'),
+    summaryTotalUsd: document.getElementById('summaryTotalUsd'),
+    summaryTotalBrl: document.getElementById('summaryTotalBrl'),
   };
 
-  function recalculateExtras() {
-    state.extraLanguages = state.plan === "premium" ? Math.max(0, state.selectedLanguages.size - 2) : 0;
-  }
+  const recalculateExtras = () => {
+    state.extraLanguages = state.plan === 'premium' ? Math.max(0, state.selectedLanguages.size - 2) : 0;
+  };
 
-  function resetState(plan) {
+  const resetState = (plan) => {
     state.plan = plan;
     state.polymarket = false;
     state.selectedLanguages = new Set();
     state.extraLanguages = 0;
+    polymarketToggle.classList.remove('active');
+    polymarketToggle.setAttribute('aria-checked', 'false');
+  };
 
-    const polymarketToggle = document.getElementById("polymarketToggle");
-    if (polymarketToggle) {
-      polymarketToggle.checked = false;
-      polymarketToggle.classList.remove("active");
-      polymarketToggle.setAttribute("aria-pressed", "false");
-      polymarketToggle.textContent = "Adicionar";
-    }
-  }
+  const closeModal = () => {
+    overlay.classList.add('hidden');
+    document.body.classList.remove('modal-open');
+  };
 
-  function openModal(plan) {
-    if (!plan) return;
+  const renderLanguageChips = () => {
+    chipsContainer.innerHTML = '';
+    LANGUAGE_OPTIONS.forEach((lang) => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = `chip${state.selectedLanguages.has(lang) ? ' active' : ''}`;
+      chip.textContent = lang;
+      chip.addEventListener('click', () => {
+        if (state.selectedLanguages.has(lang)) state.selectedLanguages.delete(lang);
+        else state.selectedLanguages.add(lang);
+        renderLanguageChips();
+        updateModalContent();
+      });
+      chipsContainer.appendChild(chip);
+    });
+  };
 
-    resetState(plan);
-    renderLanguageChips();
-    updateModalContent();
-    overlay.classList.remove("hidden");
-    document.body.classList.add("modal-open");
-  }
-
-  function closeModal() {
-    overlay.classList.add("hidden");
-    document.body.classList.remove("modal-open");
-  }
-
-  function updateModalContent() {
-    const subtitle = document.getElementById("modalSubtitle");
-    const languagesTitle = document.getElementById("languagesTitle");
-    const languagesSubtitle = document.getElementById("languagesSubtitle");
-    const summaryPlan = document.getElementById("summaryPlan");
-    const summaryIncludedItems = document.getElementById("summaryIncludedItems");
-    const summaryLanguages = document.getElementById("summaryLanguages");
-    const summaryExtensions = document.getElementById("summaryExtensions");
-    const summaryTotalUsd = document.getElementById("summaryTotalUsd");
-    const summaryTotalBrl = document.getElementById("summaryTotalBrl");
-    const premiumExtrasPanel = document.getElementById("premiumExtrasPanel");
-    const premiumExtrasLabel = document.getElementById("premiumExtrasLabel");
-    const extraLanguageCount = document.getElementById("extraLanguageCount");
-
-    if (!subtitle || !languagesTitle || !languagesSubtitle || !summaryPlan || !summaryIncludedItems || !summaryLanguages || !summaryExtensions || !summaryTotalUsd || !summaryTotalBrl) {
-      return;
-    }
-
+  const updateModalContent = () => {
     recalculateExtras();
 
-    if (state.plan === "base") {
-      subtitle.textContent = "Você selecionou o Base. Agora escolha os idiomas que deseja liberar no seu acesso.";
-      languagesTitle.textContent = "Escolha os idiomas do seu acesso";
-      languagesSubtitle.textContent = "+US$5/mês por idioma · aprox. R$26/mês por idioma";
-      summaryIncludedItems.textContent = "The Portal, The Core, The Lounge e Geopolitics";
-      if (premiumExtrasPanel) premiumExtrasPanel.classList.add("hidden");
-    } else {
-      subtitle.textContent = "Você selecionou o Premium. Os 2 primeiros idiomas já estão incluídos no plano.";
-      languagesTitle.textContent = "Escolha seus 2 idiomas incluídos";
-      languagesSubtitle.textContent = "A partir do terceiro idioma: +US$5/mês por idioma adicional.";
-      summaryIncludedItems.textContent = "The Sanctum, Duck Tank, Black Book, Global Moves e 2 idiomas incluídos";
+    const selected = [...state.selectedLanguages];
+    const isPremium = state.plan === 'premium';
 
-      if (premiumExtrasPanel) {
-        premiumExtrasPanel.classList.toggle("hidden", state.selectedLanguages.size < 2);
-      }
-      if (premiumExtrasLabel) {
-        premiumExtrasLabel.textContent = "Idiomas extras: +US$5/mês por idioma adicional";
-      }
-      if (extraLanguageCount) {
-        extraLanguageCount.textContent = String(state.extraLanguages);
-      }
+    elements.planLabel.textContent = isPremium ? 'PLANO PREMIUM' : 'PLANO BASE';
+    elements.summaryPlan.textContent = isPremium ? 'Premium' : 'Base';
+
+    if (isPremium) {
+      elements.subtitle.textContent =
+        'Você selecionou o Premium. Seus 2 primeiros idiomas já estão incluídos no plano. Se quiser expandir ainda mais, adicione idiomas extras e o Polymarket Lab.';
+      elements.languagesTitle.textContent = 'Escolha seus idiomas';
+      elements.languagesSubtitle.textContent =
+        '2 idiomas já estão incluídos no Premium. A partir do 3º idioma, +US$5/mês por idioma adicional.';
+      elements.languagesProgress.textContent = `${Math.min(2, selected.length)}/2 idiomas incluídos selecionados`;
+      elements.languagesProgress.classList.remove('hidden');
+      elements.summaryIncludedItems.textContent =
+        'Tudo do Base + The Sanctum, Duck Tank, Black Book, Global Moves e 2 idiomas incluídos';
+      elements.premiumExtrasPanel.classList.toggle('hidden', selected.length < 2);
+      elements.premiumExtrasLabel.textContent = 'Cobrança extra: +US$5/mês por idioma além dos 2 incluídos';
+      elements.extraLanguageCount.textContent = String(state.extraLanguages);
+    } else {
+      elements.subtitle.textContent =
+        'Você selecionou o Base. Nenhum idioma está incluído no plano: escolha quantos quiser por +US$5/mês cada, e adicione o Polymarket Lab se desejar.';
+      elements.languagesTitle.textContent = 'Escolha os idiomas que deseja liberar';
+      elements.languagesSubtitle.textContent = 'No Base, nenhum idioma está incluído. +US$5/mês por idioma · aprox. R$26/mês por idioma.';
+      elements.languagesProgress.classList.add('hidden');
+      elements.summaryIncludedItems.textContent = 'The Portal, The Core, The Lounge e Geopolitics';
+      elements.premiumExtrasPanel.classList.add('hidden');
     }
 
-    summaryPlan.textContent = state.plan === "premium" ? "Premium" : "Base";
-
-    const selected = [...state.selectedLanguages];
-    summaryLanguages.textContent = selected.length ? selected.join(", ") : "Nenhum";
+    elements.summaryLanguages.textContent = selected.length ? selected.join(', ') : 'Nenhum';
 
     const addOns = [];
-    if (state.polymarket) addOns.push("Polymarket Lab");
-    if (state.plan === "base" && selected.length > 0) addOns.push(`${selected.length} idioma(s)`);
-    if (state.plan === "premium" && state.extraLanguages > 0) addOns.push(`${state.extraLanguages} idioma(s) extra(s)`);
-
-    summaryExtensions.textContent = addOns.length ? addOns.join(" + ") : "Nenhum";
+    if (state.polymarket) addOns.push('Polymarket Lab');
+    if (!isPremium && selected.length > 0) addOns.push(`${selected.length} idioma(s)`);
+    if (isPremium && state.extraLanguages > 0) addOns.push(`${state.extraLanguages} idioma(s) extra(s)`);
+    elements.summaryExtensions.textContent = addOns.length ? addOns.join(' + ') : 'Nenhum';
 
     const total =
       PRICES[state.plan] +
       (state.polymarket ? PRICES.polymarket : 0) +
-      (state.plan === "base" ? selected.length * PRICES.language : state.extraLanguages * PRICES.language);
+      (isPremium ? state.extraLanguages * PRICES.language : selected.length * PRICES.language);
 
-    summaryTotalUsd.textContent = `US$${total}`;
-    summaryTotalBrl.textContent = `aprox. R$${Math.round(total * PRICES.usdToBrl)}/mês`;
-  }
+    elements.summaryTotalUsd.textContent = `US$${total}`;
+    elements.summaryTotalBrl.textContent = `Aproximação em BRL: R$${Math.round(total * PRICES.usdToBrl)}/mês`;
+  };
 
-  function renderLanguageChips() {
-    if (!chipsContainer) return;
-    chipsContainer.innerHTML = "";
-
-    LANGUAGE_OPTIONS.forEach((lang) => {
-      const chip = document.createElement("button");
-      chip.type = "button";
-      chip.className = "chip";
-      chip.textContent = lang;
-      chip.classList.toggle("active", state.selectedLanguages.has(lang));
-
-      chip.addEventListener("click", () => {
-        if (state.selectedLanguages.has(lang)) {
-          state.selectedLanguages.delete(lang);
-        } else {
-          state.selectedLanguages.add(lang);
-        }
-
-        renderLanguageChips();
-        updateModalContent();
-      });
-
-      chipsContainer.appendChild(chip);
-    });
-  }
+  const openModal = (plan) => {
+    if (plan !== 'base' && plan !== 'premium') return;
+    resetState(plan);
+    renderLanguageChips();
+    updateModalContent();
+    overlay.classList.remove('hidden');
+    document.body.classList.add('modal-open');
+  };
 
   planButtons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      const plan = button.getAttribute("data-plan-trigger");
-      openModal(plan);
-    });
+    button.type = 'button';
+    button.addEventListener('click', () => openModal(button.dataset.planTrigger));
   });
 
-  closeBtn.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    closeModal();
-  });
-
-  overlay.addEventListener("click", (event) => {
-    if (event.target === overlay) {
-      closeModal();
-    }
-  });
-
-  modal.addEventListener("click", (event) => {
-    event.stopPropagation();
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !overlay.classList.contains("hidden")) {
-      closeModal();
-    }
-  });
-
-  polymarketToggle?.addEventListener("click", () => {
+  polymarketToggle.addEventListener('click', () => {
     state.polymarket = !state.polymarket;
-    polymarketToggle.classList.toggle("active", state.polymarket);
-    polymarketToggle.setAttribute("aria-pressed", String(state.polymarket));
-    polymarketToggle.textContent = state.polymarket ? "Adicionado" : "Adicionar";
+    polymarketToggle.classList.toggle('active', state.polymarket);
+    polymarketToggle.setAttribute('aria-checked', String(state.polymarket));
     updateModalContent();
   });
 
-  document.getElementById("openAccess")?.addEventListener("click", () => {
-    document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !overlay.classList.contains('hidden')) closeModal();
+  });
+
+  document.getElementById('openAccess')?.addEventListener('click', () => {
+    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   const observer = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
-      });
+      entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add('visible'));
     },
     { threshold: 0.16 }
   );
 
-  document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
-  document.querySelectorAll(".layer-card, .plan-card").forEach((card, index) => {
-    card.style.transitionDelay = `${90 + (index % 2) * 90}ms`;
-    card.classList.add("reveal");
-    observer.observe(card);
-  });
+  document.querySelectorAll('.reveal').forEach((item) => observer.observe(item));
 });
