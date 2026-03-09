@@ -30,6 +30,18 @@ const summaryPolymarket = document.getElementById("summaryPolymarket");
 const summaryTotalUsd = document.getElementById("summaryTotalUsd");
 const summaryTotalBrl = document.getElementById("summaryTotalBrl");
 
+const summaryTargets = [summaryTotalUsd, summaryTotalBrl];
+
+function pulseSummaryTotals() {
+  summaryTargets.forEach((target) => {
+    target.classList.add("pulse-update");
+  });
+  window.setTimeout(() => {
+    summaryTargets.forEach((target) => target.classList.remove("pulse-update"));
+  }, 260);
+}
+
+
 function openModal(plan) {
   state.plan = plan;
   state.polymarket = false;
@@ -99,6 +111,7 @@ function refreshSummary() {
   const total = calculateTotal();
   summaryTotalUsd.textContent = `US$${total}`;
   summaryTotalBrl.textContent = `aprox. R$${Math.round(total * PRICES.usdToBrl)}/mês`;
+  pulseSummaryTotals();
 }
 
 document.querySelectorAll(".cta[data-plan]").forEach((button) => {
@@ -132,3 +145,8 @@ const observer = new IntersectionObserver(
 );
 
 document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
+document.querySelectorAll(".layer-card, .plan-card").forEach((card, index) => {
+  card.style.transitionDelay = `${90 + (index % 2) * 90}ms`;
+  card.classList.add("reveal");
+  observer.observe(card);
+});
