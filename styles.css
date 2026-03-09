@@ -109,6 +109,15 @@ p, li { color: var(--muted); line-height: 1.65; }
 }
 .gold-line p { color: #edd8ab; margin: 0; font-size: clamp(1rem, 1.5vw, 1.17rem); }
 
+
+.micro-proof {
+  text-align: center;
+  padding: 18px 28px;
+  border-color: rgba(255, 255, 255, 0.16);
+  background: linear-gradient(145deg, rgba(11, 15, 24, 0.78), rgba(9, 12, 20, 0.6));
+}
+.micro-proof p { margin: 0; color: #d8e0f2; font-size: 0.92rem; letter-spacing: 0.02em; }
+
 .layers-grid, .plan-grid, .ecosystem-grid, .fit-grid, .modal { display: grid; gap: 22px; }
 .layers-grid, .plan-grid, .fit-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 .ecosystem-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
@@ -180,14 +189,15 @@ li { margin-bottom: 5px; }
 .chip.active { background: linear-gradient(145deg, rgba(218, 182, 111, 0.28), rgba(218, 182, 111, 0.12)); border-color: rgba(218, 182, 111, 0.74); color: #f6e4c0; }
 
 .summary {
-  border: 1px solid rgba(218, 182, 111, 0.28); border-radius: 16px; padding: 20px;
-  background: linear-gradient(155deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(218, 182, 111, 0.32); border-radius: 16px; padding: 22px;
+  background: linear-gradient(155deg, rgba(218, 182, 111, 0.12), rgba(255, 255, 255, 0.03));
+  box-shadow: inset 0 1px 0 rgba(255, 233, 190, 0.15);
 }
-.summary-title { margin: 0 0 10px; color: #f0d39a; font-size: 1rem; font-weight: 700; }
+.summary-title { margin: 0 0 14px; color: #f6ddb0; font-size: 1.05rem; font-weight: 700; letter-spacing: 0.02em; }
 .summary-group { padding-bottom: 11px; margin-bottom: 11px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-.summary-k { margin: 0; color: #c5d0e4; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
-.summary-value { margin: 4px 0 0; color: #f4f7ff; }
-.total { margin: 8px 0 2px; font-size: 1.18rem; color: #f5ddb0; display: flex; justify-content: space-between; }
+.summary-k { margin: 0; color: #d3dbee; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.summary-value { margin: 6px 0 0; color: #f8fbff; font-weight: 500; }
+.total { margin: 12px 0 2px; font-size: 1.18rem; color: #f5ddb0; display: flex; justify-content: space-between; }
 .checkout { width: 100%; margin-top: 10px; }
 .summary-note { margin-top: 8px; }
 
