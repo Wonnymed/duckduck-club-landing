@@ -111,7 +111,7 @@ p, li { color: var(--muted); line-height: 1.65; }
 .gold-line p { color: #edd8ab; margin: 0; font-size: clamp(1rem, 1.5vw, 1.17rem); }
 
 
-.layers-grid, .plan-grid, .fit-grid, .modal { display: grid; gap: 22px; }
+.layers-grid, .plan-grid, .fit-grid, .faq-list, .modal { display: grid; gap: 22px; }
 .layers-grid, .plan-grid, .fit-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 .ecosystem-grid {
   display: grid;
