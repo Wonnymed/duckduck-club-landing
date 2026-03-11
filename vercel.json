@@ -3,7 +3,6 @@
   "framework": null,
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/access", "destination": "/access/index.html" },
-    { "source": "/access/", "destination": "/access/index.html" }
+    { "source": "/access", "destination": "/" }
   ]
 }
