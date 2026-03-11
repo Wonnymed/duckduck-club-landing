@@ -1,0 +1,19 @@
+{
+  "proofs": [
+    {
+      "id": "sc1",
+      "label": "base screenshot",
+      "sourceHint": "/tmp/user_uploaded_attachments/image_1.png"
+    },
+    {
+      "id": "sc2",
+      "label": "premium screenshot",
+      "sourceHint": "/tmp/user_uploaded_attachments/image_2.png"
+    },
+    {
+      "id": "sc3",
+      "label": "expansion screenshot",
+      "sourceHint": "/tmp/user_uploaded_attachments/image_3.png"
+    }
+  ]
+}
