@@ -1,19 +1,19 @@
 const faqItems = [
   {
-    q: 'Can I cancel anytime?',
-    a: 'Yes. Monthly plans can be canceled with one click from your dashboard. Access remains active until your billing cycle ends.',
+    q: 'Posso cancelar quando quiser?',
+    a: 'Sim. O plano mensal pode ser cancelado em um clique. Seu acesso fica ativo até o fim do ciclo já pago.',
   },
   {
-    q: 'Is this for beginners?',
-    a: 'Absolutely. Base is designed for clarity and fundamentals. Premium layers on speed, depth, and direct implementation support.',
+    q: 'Serve para iniciante?',
+    a: 'Serve para quem quer executar com método. No Base você ganha clareza e fundamento; no Premium, velocidade, profundidade e revisão direta.',
   },
   {
-    q: 'What makes Premium different in practice?',
-    a: 'Premium includes advanced playbooks, live teardown sessions, and a private operator channel where members get direct feedback.',
+    q: 'O que muda no Premium, na prática?',
+    a: 'Você recebe playbooks avançados, sessões ao vivo de teardown e canal privado para decisões de operação com feedback aplicado.',
   },
   {
-    q: 'Do you offer team access?',
-    a: 'Yes. Teams of 5+ can request custom onboarding and consolidated billing.',
+    q: 'O que eu recebo após pagar?',
+    a: 'Acesso imediato ao painel, trilha de 30 dias, vault de templates e comunidade. No Premium, libera também canal privado e sessões semanais.',
   },
 ];
 
@@ -21,16 +21,16 @@ const tiers = [
   {
     name: 'Base',
     price: '$19',
-    description: 'For focused learners who want the core system.',
-    features: ['Weekly curriculum drops', 'Core templates', 'Community forum access', 'Monthly recap notes'],
-    cta: 'Start Base',
+    description: 'Para quem quer o método essencial e consistência semanal.',
+    features: ['Trilha semanal guiada', 'Templates essenciais', 'Comunidade de membros', 'Resumo mensal de implementação'],
+    cta: 'Começar no Base',
   },
   {
     name: 'Premium',
     price: '$79',
-    description: 'For operators who want speed, clarity, and direct support.',
-    features: ['Everything in Base', 'Private operator channel', 'Live teardown sessions', 'Premium implementation vault'],
-    cta: 'Go Premium',
+    description: 'Para operadores que querem avançar mais rápido, com direção direta.',
+    features: ['Tudo do Base', 'Canal privado de operadores', 'Teardowns ao vivo semanais', 'Vault Premium de implementação'],
+    cta: 'Ver meu acesso',
     featured: true,
   },
 ];
@@ -44,18 +44,18 @@ export default function AccessPage() {
             Premium Access • DuckDuck Club
           </p>
           <h1 className="mt-5 text-3xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
-            Built for serious builders. <span className="text-lilac">Designed for trust.</span>
+            Clareza para executar. <span className="text-lilac">Estrutura para crescer.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-sm leading-relaxed text-white/75 sm:text-base">
-            DuckDuck Club Premium gives you structured systems, practical execution frameworks, and direct guidance—without noise,
-            hype, or distractions.
+            O DuckDuck Club é um clube de execução para criadores e operadores digitais que querem transformar estudo em resultado real,
+            sem ruído e sem promessas vazias.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <button className="rounded-full bg-cta px-6 py-3 text-sm font-semibold text-black transition hover:brightness-95">
-              Get Premium Access
+              Ver meu acesso
             </button>
             <button className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/5">
-              Explore Base Plan
+              Ver plano Base
             </button>
           </div>
         </section>
@@ -63,15 +63,15 @@ export default function AccessPage() {
         <section className="grid gap-3 rounded-2xl border border-white/10 bg-black/35 p-5 text-sm sm:grid-cols-3 sm:gap-4 sm:p-6">
           <div>
             <p className="text-2xl font-semibold text-cta">1,200+</p>
-            <p className="mt-1 text-white/70">active members building weekly</p>
+            <p className="mt-1 text-white/70">membros ativos em rotina semanal</p>
           </div>
           <div>
             <p className="text-2xl font-semibold text-cta">42%</p>
-            <p className="mt-1 text-white/70">faster execution after 30 days</p>
+            <p className="mt-1 text-white/70">mais velocidade de execução em 30 dias</p>
           </div>
           <div>
             <p className="text-2xl font-semibold text-cta">4.9/5</p>
-            <p className="mt-1 text-white/70">average satisfaction score</p>
+            <p className="mt-1 text-white/70">nota média de satisfação dos membros</p>
           </div>
         </section>
 
@@ -80,8 +80,8 @@ export default function AccessPage() {
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-lilac/90">O problema</p>
             <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">Muito conteúdo. Pouca clareza de execução.</h2>
             <p className="mt-4 text-sm leading-relaxed text-white/75 sm:text-base">
-              Quem quer resultado rápido geralmente entra em comunidades barulhentas, com aulas soltas, promessas exageradas e pouco
-              direcionamento real para avançar toda semana.
+              O cenário comum é: aulas soltas, comunidade barulhenta e pouca prioridade prática. Você consome mais, implementa menos e
+              segue travado.
             </p>
           </div>
           <div className="rounded-2xl border border-lilac/25 bg-lilac/5 p-6 sm:p-8">
@@ -96,20 +96,20 @@ export default function AccessPage() {
 
         <section>
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-lilac/90">O que você encontra ao entrar</p>
-          <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">Entregáveis concretos para evoluir com consistência.</h2>
+          <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">Tudo que existe dentro foi feito para sair do plano e ir para execução.</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-3 md:gap-5">
             {[
               {
                 title: 'Roteiro de 30 dias',
-                desc: 'Plano de execução com foco em prioridades, checkpoints semanais e métricas claras.',
+                desc: 'Plano com prioridades semanais, checkpoints e métricas para você saber exatamente o próximo passo.',
               },
               {
                 title: 'Vault de templates',
-                desc: 'Modelos prontos para copy, oferta, operação e acompanhamento de performance.',
+                desc: 'Modelos prontos de copy, oferta e operação para reduzir tempo e aumentar qualidade da entrega.',
               },
               {
                 title: 'Canal de operadores',
-                desc: 'Ambiente privado para revisão de decisões, gargalos e próximos passos práticos.',
+                desc: 'Espaço privado para revisar decisões, resolver gargalos e manter ritmo de implementação.',
               },
             ].map((item) => (
               <article key={item.title} className="rounded-2xl border border-white/10 bg-black/35 p-6">
@@ -121,22 +121,22 @@ export default function AccessPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold sm:text-3xl">Base vs Premium</h2>
+          <h2 className="text-2xl font-semibold sm:text-3xl">Por que o Premium entrega mais valor</h2>
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10">
             <table className="w-full text-left text-sm">
               <thead className="bg-white/5 text-white/80">
                 <tr>
-                  <th className="px-4 py-3">Feature</th>
+                  <th className="px-4 py-3">Entrega</th>
                   <th className="px-4 py-3">Base</th>
                   <th className="px-4 py-3">Premium</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/10 text-white/80">
                 {[
-                  ['Weekly curriculum', 'Included', 'Included'],
-                  ['Template vault', 'Core set', 'Full vault + updates'],
-                  ['Live teardown sessions', '—', 'Weekly'],
-                  ['Operator channel', '—', 'Private access'],
+                  ['Trilha semanal', 'Incluído', 'Incluído'],
+                  ['Vault de templates', 'Essencial', 'Completo + atualizações'],
+                  ['Teardowns ao vivo', '—', 'Semanal'],
+                  ['Canal de operadores', '—', 'Acesso privado'],
                 ].map((row) => (
                   <tr key={row[0]} className="bg-black/30">
                     <td className="px-4 py-3 font-medium text-white">{row[0]}</td>
@@ -170,8 +170,22 @@ export default function AccessPage() {
           </div>
         </section>
 
+        <section className="rounded-2xl border border-white/10 bg-black/35 p-6 sm:p-8">
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-lilac/90">Depois do pagamento</p>
+          <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">Você entra já com próximo passo definido.</h2>
+          <ul className="mt-5 space-y-3 text-sm text-white/80 sm:text-base">
+            <li>• Liberação imediata do painel de membros.</li>
+            <li>• Acesso à trilha inicial de 30 dias para começar hoje.</li>
+            <li>• Templates prontos para aplicar no seu contexto.</li>
+            <li>• Comunidade e atualizações contínuas conforme execução real.</li>
+          </ul>
+          <button className="mt-7 rounded-full bg-cta px-6 py-3 text-sm font-semibold text-black transition hover:brightness-95">
+            Ver meu acesso
+          </button>
+        </section>
+
         <section>
-          <h2 className="text-2xl font-semibold sm:text-3xl">Pricing</h2>
+          <h2 className="text-2xl font-semibold sm:text-3xl">Escolha seu nível de acesso</h2>
           <div className="mt-6 grid gap-4 lg:grid-cols-2 lg:gap-5">
             {tiers.map((tier) => (
               <article
@@ -184,7 +198,7 @@ export default function AccessPage() {
               >
                 <h3 className="text-xl font-semibold">{tier.name}</h3>
                 <p className="mt-2 text-4xl font-semibold">{tier.price}</p>
-                <p className="mt-1 text-xs text-white/60">per month</p>
+                <p className="mt-1 text-xs text-white/60">por mês</p>
                 <p className="mt-5 text-sm leading-relaxed text-white/75">{tier.description}</p>
                 <ul className="mt-5 space-y-2.5 text-sm text-white/80">
                   {tier.features.map((item) => (
@@ -216,12 +230,12 @@ export default function AccessPage() {
         </section>
 
         <section className="rounded-3xl border border-lilac/30 bg-lilac/10 p-7 text-center sm:p-10">
-          <h2 className="text-2xl font-semibold sm:text-3xl">Join DuckDuck Club Premium</h2>
+          <h2 className="text-2xl font-semibold sm:text-3xl">Pronto para entrar no DuckDuck Club Premium?</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-white/80 sm:text-base">
-            If you value clear direction, practical systems, and momentum without noise, this is your place.
+            Se você quer direção clara, sistema aplicável e evolução semanal, o próximo passo é simples.
           </p>
           <button className="mt-6 rounded-full bg-cta px-7 py-3 text-sm font-semibold text-black transition hover:brightness-95">
-            Unlock Premium Access
+            Ver meu acesso
           </button>
         </section>
       </div>
