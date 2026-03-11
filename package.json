@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "echo 'Static site: no build step required'"
+    "start": "python3 -m http.server 3000",
+    "check": "python3 -m http.server 3000 >/tmp/ddc-http.log 2>&1 & PID=$!; sleep 1; curl -sI http://127.0.0.1:3000/ | head -n 1; curl -sI http://127.0.0.1:3000/access | head -n 1; curl -sI http://127.0.0.1:3000/404.html | head -n 1; kill $PID"
   }
 }
