@@ -7,11 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const chipsContainer = document.getElementById('languageChips');
   const polymarketToggle = document.getElementById('polymarketToggle');
 
-  document.querySelectorAll('.editorial-image').forEach((img) => {
-    img.addEventListener('error', () => img.classList.add('is-missing'));
-    img.addEventListener('load', () => img.classList.remove('is-missing'));
-  });
-
   if (!overlay || !modal || !closeBtn || !chipsContainer || !polymarketToggle) return;
 
   const state = {
