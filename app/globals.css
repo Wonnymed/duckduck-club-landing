@@ -4,11 +4,9 @@
 
 :root {
   color-scheme: dark;
-  --serif: 'Cormorant Garamond', Georgia, serif;
-  --sans: 'DM Sans', system-ui, sans-serif;
 }
 
 body {
   @apply bg-night text-white antialiased;
-  font-family: var(--sans);
+  font-family: var(--sans, system-ui, sans-serif);
 }

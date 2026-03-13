@@ -27,13 +27,13 @@ function useFadeIn() {
   }, []);
   return { ref, style: { opacity: v ? 1 : 0, transform: v ? "translateY(0)" : "translateY(24px)", transition: "opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1)" } };
 }
-function Fade({ children, className = "", delay = 0 }) {
+function Fade({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const { ref, style } = useFadeIn();
   return <div ref={ref} style={{ ...style, transitionDelay: `${delay}ms` }} className={className}>{children}</div>;
 }
 
 /* ─── Logo: replace src with your real logo PNG when available ─── */
-function Logo({ size = 36 }) {
+function Logo({ size = 36 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M30 65 C30 65 25 58 28 48 C31 38 38 32 45 30 C48 29 50 26 49 22 C48 18 51 15 55 16 C59 17 60 21 58 24 C57 26 58 28 60 29 C66 31 72 36 74 44 C76 52 73 60 68 65 C63 70 55 72 50 72 C42 72 35 70 30 65Z" fill={GOLD} opacity="0.9"/>
@@ -47,10 +47,10 @@ function Logo({ size = 36 }) {
 }
 
 /* ─── Shared UI ─── */
-function Badge({ children }) {
+function Badge({ children }: { children: React.ReactNode }) {
   return <span className="inline-flex items-center text-xs tracking-widest uppercase px-4 py-1.5 rounded-full border" style={{ color: GOLD, borderColor: "rgba(201,168,76,0.3)", background: "rgba(201,168,76,0.06)", letterSpacing: "0.15em", fontFamily: "var(--serif)" }}>{children}</span>;
 }
-function GoldButton({ children, onClick, className = "" }) {
+function GoldButton({ children, onClick, className = "" }: { children: React.ReactNode; onClick?: () => void; className?: string }) {
   return (
     <button onClick={onClick} className={`group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg text-sm tracking-wider uppercase transition-all duration-300 ${className}`}
       style={{ background: `linear-gradient(135deg, ${GOLD}, ${GOLD_DIM})`, color: "#0A0A0A", fontFamily: "var(--serif)", letterSpacing: "0.12em", fontWeight: 600 }}
@@ -60,7 +60,7 @@ function GoldButton({ children, onClick, className = "" }) {
     </button>
   );
 }
-function OutlineButton({ children, onClick, className = "" }) {
+function OutlineButton({ children, onClick, className = "" }: { children: React.ReactNode; onClick?: () => void; className?: string }) {
   return (
     <button onClick={onClick} className={`group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg text-sm tracking-wider uppercase transition-all duration-300 border w-full ${className}`}
       style={{ color: GOLD, borderColor: "rgba(201,168,76,0.3)", background: "transparent", fontFamily: "var(--serif)", letterSpacing: "0.12em" }}
@@ -70,7 +70,7 @@ function OutlineButton({ children, onClick, className = "" }) {
     </button>
   );
 }
-function FAQItem({ q, a }) {
+function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="rounded-xl transition-all duration-300 cursor-pointer" style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${open ? "rgba(201,168,76,0.15)" : "rgba(255,255,255,0.06)"}` }} onClick={() => setOpen(!open)}>
@@ -82,7 +82,7 @@ function FAQItem({ q, a }) {
     </div>
   );
 }
-function MobileNav({ open, onClose, onCheckout }) {
+function MobileNav({ open, onClose, onCheckout }: { open: boolean; onClose: () => void; onCheckout: (plan: string) => void }) {
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-50 flex flex-col" style={{ background: "rgba(10,10,10,0.97)", backdropFilter: "blur(20px)" }}>
@@ -102,16 +102,16 @@ function MobileNav({ open, onClose, onCheckout }) {
 
 /* ═══ CHECKOUT MODAL ═══ */
 const LANGS = ["English", "Spanish", "Italian", "French", "German", "Mandarin", "Korean", "Japanese"];
-function CheckoutModal({ plan, onClose }) {
+function CheckoutModal({ plan, onClose }: { plan: string; onClose: () => void }) {
   const premium = plan === "premium";
   const base = premium ? 29 : 15;
   const [poly, setPoly] = useState(false);
-  const [langs, setLangs] = useState([]);
+  const [langs, setLangs] = useState<string[]>([]);
   const free = premium ? 2 : 0;
   const paid = Math.max(0, langs.length - free);
   const total = base + paid * 5 + (poly ? 10 : 0);
   const brl = Math.round(total * 5.2);
-  const toggle = l => setLangs(p => p.includes(l) ? p.filter(x => x !== l) : [...p, l]);
+  const toggle = (l: string) => setLangs(p => p.includes(l) ? p.filter(x => x !== l) : [...p, l]);
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.8)", backdropFilter: "blur(12px)" }} onClick={onClose}>
       <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl" style={{ background: "#111", border: "1px solid rgba(255,255,255,0.08)" }} onClick={e => e.stopPropagation()}>
@@ -191,7 +191,7 @@ function CommunityShowcase() {
 export default function DuckDuckClub() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [checkout, setCheckout] = useState(null);
+  const [checkout, setCheckout] = useState<string | null>(null);
   useEffect(() => { const fn = () => setScrolled(window.scrollY > 40); window.addEventListener("scroll", fn); return () => window.removeEventListener("scroll", fn); }, []);
 
   return (
