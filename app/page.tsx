@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Globe, Lock, Key, ArrowRight, Menu, X, Check, ChevronDown, Compass, BookOpen, Handshake, Settings } from "lucide-react";
+import { Globe, ArrowRight, Menu, X, Check, ChevronDown, Compass, BookOpen, Handshake, Settings } from "lucide-react";
+import Image from "next/image";
 
 const GOLD = "#C9A84C";
 const GOLD_DIM = "#A0832A";
@@ -12,8 +13,6 @@ const SCREEN2 = "/club-screen-2.png";
 const SCREEN3 = "/club-screen-3.png";
 
 // ★ SWAP THESE: Replace with your converted JPG/PNG URLs
-const FOUNDER_PHOTO = "/founder-photo.jpg";
-const LOGO_IMG = "/logo.jpg";
 
 /* ─── Fade-in on scroll ─── */
 function useFadeIn() {
@@ -171,17 +170,17 @@ function CommunityShowcase() {
         {/* Screen 1 */}
         <div className="w-36 sm:w-44 md:w-52 rounded-2xl overflow-hidden shadow-2xl relative" style={{ border: "1px solid rgba(255,255,255,0.08)", transform: "rotate(-3deg) translateY(12px)" }}>
           <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 60%, rgba(10,10,10,0.4) 100%)", zIndex: 2 }} />
-          <img src={SCREEN1} alt="The Portal & Core" className="w-full h-auto block" style={{ filter: "brightness(0.9)" }} />
+          <Image src={SCREEN1} alt="The Portal & Core" width={390} height={844} className="w-full h-auto block" style={{ filter: "brightness(0.9)" }} />
         </div>
         {/* Screen 2 - center, larger */}
         <div className="w-44 sm:w-52 md:w-60 rounded-2xl overflow-hidden shadow-2xl relative" style={{ border: "1px solid rgba(201,168,76,0.15)", zIndex: 3 }}>
           <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 60%, rgba(10,10,10,0.3) 100%)", zIndex: 2 }} />
-          <img src={SCREEN2} alt="The Sanctum & Duck Tank" className="w-full h-auto block" style={{ filter: "brightness(0.95)" }} />
+          <Image src={SCREEN2} alt="The Sanctum & Duck Tank" width={390} height={844} className="w-full h-auto block" style={{ filter: "brightness(0.95)" }} />
         </div>
         {/* Screen 3 */}
         <div className="w-36 sm:w-44 md:w-52 rounded-2xl overflow-hidden shadow-2xl relative" style={{ border: "1px solid rgba(255,255,255,0.08)", transform: "rotate(3deg) translateY(12px)" }}>
           <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 60%, rgba(10,10,10,0.4) 100%)", zIndex: 2 }} />
-          <img src={SCREEN3} alt="Languages & Polymarket" className="w-full h-auto block" style={{ filter: "brightness(0.9)" }} />
+          <Image src={SCREEN3} alt="Languages & Polymarket" width={390} height={844} className="w-full h-auto block" style={{ filter: "brightness(0.9)" }} />
         </div>
       </div>
     </div>
@@ -197,7 +196,6 @@ export default function DuckDuckClub() {
 
   return (
     <div className="min-h-screen" style={{ "--serif": "'Cormorant Garamond', serif", "--sans": "'DM Sans', sans-serif", background: "#0A0A0A", color: "white", fontFamily: "var(--sans)" }}>
-      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}><div className="absolute top-[-20%] left-[20%] w-[600px] h-[600px] rounded-full" style={{ background: "radial-gradient(circle, rgba(201,168,76,0.03) 0%, transparent 70%)" }} /><div className="absolute bottom-[-10%] right-[10%] w-[400px] h-[400px] rounded-full" style={{ background: "radial-gradient(circle, rgba(201,168,76,0.02) 0%, transparent 70%)" }} /></div>
 
       <MobileNav open={menuOpen} onClose={() => setMenuOpen(false)} onCheckout={p => setCheckout(p)} />
@@ -330,14 +328,8 @@ export default function DuckDuckClub() {
               {/* Photo */}
               <div className="md:col-span-2 flex justify-center md:justify-start">
                 <div className="relative">
-                  {/* ★ REPLACE: swap this div with an <img src="/founder-photo.jpg" /> after converting your HEIC */}
-                  <div className="w-52 h-64 md:w-60 md:h-72 rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.03))", border: "1px solid rgba(201,168,76,0.15)" }}>
-                    <div className="w-full h-full flex items-center justify-center" style={{ background: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\"><text x=\"50%\" y=\"50%\" font-size=\"72\" fill=\"rgba(201,168,76,0.3)\" text-anchor=\"middle\" dominant-baseline=\"central\" font-family=\"serif\">FP</text></svg>') center/cover no-repeat" }}>
-                      <div className="text-center">
-                        <div className="text-6xl font-light" style={{ fontFamily: "var(--serif)", color: GOLD, opacity: 0.4 }}>FP</div>
-                        <div className="mt-2 text-[10px] uppercase tracking-widest" style={{ color: "rgba(201,168,76,0.3)" }}>Founder</div>
-                      </div>
-                    </div>
+                  <div className="w-52 h-64 md:w-60 md:h-72 rounded-2xl overflow-hidden relative" style={{ border: "1px solid rgba(201,168,76,0.15)" }}>
+                    <Image src="/founder-photo.jpg" alt="Founder" fill className="object-cover object-top" />
                   </div>
                   <div className="absolute -bottom-3 -right-3 w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: "#0A0A0A", border: "1px solid rgba(201,168,76,0.2)" }}><Globe size={16} style={{ color: GOLD }} /></div>
                 </div>
