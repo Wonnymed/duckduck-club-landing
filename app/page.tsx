@@ -13,7 +13,7 @@ const SCREEN3 = "/club-screen-3.png";
 
 // ★ SWAP THESE: Replace with your converted JPG/PNG URLs
 const FOUNDER_PHOTO = "/founder-photo.jpg";
-const LOGO_IMG = "/logo.png";
+const LOGO_IMG = "/logo.jpg";
 
 /* ─── Fade-in on scroll ─── */
 function useFadeIn() {
